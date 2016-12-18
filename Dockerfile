@@ -21,7 +21,7 @@ ENV NOMACHINE_MD5 218372fe3591a8d91432aa1c8d6f118a
 RUN apt-get update -y && \
     apt-get install -y mate-desktop-environment-extras
 
-# Install nomachine
+# Install nomachine, change password and username to whatever you want here
 RUN curl -fSL "http://download.nomachine.com/download/5.1/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
 && echo "${NOMACHINE_MD5} *nomachine.deb" | md5sum -c - \
 && dpkg -i nomachine.deb \
