@@ -22,7 +22,7 @@ RUN apt-get update -y && \
     apt-get install -y mate-desktop-environment-extras
 
 # Install nomachine, change password and username to whatever you want here
-RUN curl -fSL "http://download.nomachine.com/download/5.1/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
+RUN curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
 && echo "${NOMACHINE_MD5} *nomachine.deb" | md5sum -c - \
 && dpkg -i nomachine.deb \
 && groupadd -r nomachine -g 433 \
