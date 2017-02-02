@@ -14,8 +14,8 @@ RUN echo "America/Bogota" > /etc/timezone && \
 
 RUN apt-get update && apt-get install -y vim xterm pulseaudio cups curl
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
-ENV NOMACHINE_PACKAGE_NAME nomachine_5.1.62_1_amd64.deb
-ENV NOMACHINE_MD5 218372fe3591a8d91432aa1c8d6f118a
+ENV NOMACHINE_PACKAGE_NAME nomachine_5.2.11_1_amd64.deb
+ENV NOMACHINE_MD5 d697e5a565507d522380c94d2f295d07
 
 # Install the mate-desktop-enviroment version you would like to have
 RUN apt-get update -y && \
