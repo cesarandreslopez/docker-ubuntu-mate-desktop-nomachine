@@ -1,0 +1,12 @@
+version: '2'
+services:
+  Desktop-1:
+    cap_add:
+    - SYS_PTRACE
+    image: cesarandreslopez/docker-ubuntu-mate-desktop-nomachine
+    stdin_open: true
+    tty: true
+    ports:
+    - 4000:4000/tcp
+    labels:
+      io.rancher.container.pull_image: always
