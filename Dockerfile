@@ -12,7 +12,10 @@ RUN echo "America/Bogota" > /etc/timezone && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=$LANG
 
-RUN apt-get update && apt-get install -y vim xterm pulseaudio cups curl
+RUN apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties
+RUN add-apt-repository universe
+RUN apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation
+
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
 ENV NOMACHINE_PACKAGE_NAME nomachine_5.2.11_1_amd64.deb
 ENV NOMACHINE_MD5 d697e5a565507d522380c94d2f295d07
@@ -31,8 +34,6 @@ RUN curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACK
 && chown -R nomachine:nomachine /home/nomachine \
 && echo 'nomachine:nomachine' | chpasswd
 
-# install add-apt-repository stuff to get tor-browser working
-RUN apt-get install -y software-properties-common python3-software-properties python-software-properties wget xdg-utils libpango1.0-0 fonts-liberation
 # download tor and install
 RUN add-apt-repository ppa:webupd8team/tor-browser
 RUN apt-get update -y && apt-get install -y tor firefox libreoffice htop nano git vim tor-browser
