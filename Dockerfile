@@ -12,7 +12,7 @@ RUN echo "America/Bogota" > /etc/timezone && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=$LANG
 
-RUN apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties
+RUN apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties sudo
 RUN add-apt-repository universe
 RUN apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation
 
@@ -30,6 +30,7 @@ RUN curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACK
 && dpkg -i nomachine.deb \
 && groupadd -r nomachine -g 433 \
 && useradd -u 431 -r -g nomachine -d /home/nomachine -s /bin/bash -c "NoMachine" nomachine \
+&& adduser nomachine sudo
 && mkdir /home/nomachine \
 && chown -R nomachine:nomachine /home/nomachine \
 && echo 'nomachine:nomachine' | chpasswd
