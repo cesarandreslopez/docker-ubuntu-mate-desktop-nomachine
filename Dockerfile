@@ -30,7 +30,7 @@ RUN curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACK
 && dpkg -i nomachine.deb \
 && groupadd -r nomachine -g 433 \
 && useradd -u 431 -r -g nomachine -d /home/nomachine -s /bin/bash -c "NoMachine" nomachine \
-&& adduser nomachine sudo
+&& adduser nomachine sudo \
 && mkdir /home/nomachine \
 && chown -R nomachine:nomachine /home/nomachine \
 && echo 'nomachine:nomachine' | chpasswd
