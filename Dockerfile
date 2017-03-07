@@ -24,20 +24,14 @@ ENV NOMACHINE_MD5 d697e5a565507d522380c94d2f295d07
 RUN apt-get update -y && \
     apt-get install -y mate-desktop-environment-extras
 
+# download tor, firefox, libreoffice and git
+RUN add-apt-repository ppa:webupd8team/tor-browser
+RUN apt-get update -y && apt-get install -y tor firefox libreoffice htop nano git vim tor-browser
+
 # Install nomachine, change password and username to whatever you want here
 RUN curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
 && echo "${NOMACHINE_MD5} *nomachine.deb" | md5sum -c - \
-&& dpkg -i nomachine.deb \
-&& groupadd -r nomachine -g 433 \
-&& useradd -u 431 -r -g nomachine -d /home/nomachine -s /bin/bash -c "NoMachine" nomachine \
-&& adduser nomachine sudo \
-&& mkdir /home/nomachine \
-&& chown -R nomachine:nomachine /home/nomachine \
-&& echo 'nomachine:nomachine' | chpasswd
-
-# download tor and install
-RUN add-apt-repository ppa:webupd8team/tor-browser
-RUN apt-get update -y && apt-get install -y tor firefox libreoffice htop nano git vim tor-browser
+&& dpkg -i nomachine.deb
 
 ADD nxserver.sh /
 

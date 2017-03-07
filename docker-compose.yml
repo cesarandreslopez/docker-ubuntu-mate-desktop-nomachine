@@ -1,6 +1,9 @@
 version: '2'
 services:
   Desktop-1:
+    environment:
+    - PASSWORD=password
+    - USER=user
     cap_add:
     - SYS_PTRACE
     image: cesarandreslopez/docker-ubuntu-mate-desktop-nomachine
